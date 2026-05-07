@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Meditra Avatar Generator</title>
+    <style>
+      :root { color-scheme: light; }
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; max-width: 920px; }
+      h1 { margin: 0 0 8px; font-size: 22px; }
+      p { margin: 0 0 16px; color: #444; }
+      form { display: flex; gap: 8px; align-items: center; }
+      input[type="text"] { flex: 1; padding: 10px 12px; border: 1px solid #ccc; border-radius: 8px; }
+      button { padding: 10px 12px; border: 0; border-radius: 8px; background: #111; color: white; cursor: pointer; }
+      button[disabled] { opacity: 0.6; cursor: not-allowed; }
+      .row { margin-top: 16px; display: grid; gap: 10px; }
+      .meta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; color: #333; }
+      .error { color: #b00020; white-space: pre-wrap; }
+      video { width: 100%; height: 100%; background: #000; object-fit: contain; }
+      .video-container { position: relative; width: 100%; max-width: 405px; height: 720px; margin: 0 auto; background: #000; border-radius: 12px; overflow: hidden; }
+      .pause-loop { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+      .generated-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; background: #000; }
+      .generated-video.hidden { display: none; }
+      a { display: inline-block; padding: 10px 12px; border-radius: 8px; border: 1px solid #ccc; text-decoration: none; color: #111; }
+    </style>
+  </head>
+  <body>
+    <h1>Meditra Avatar Generator</h1>
+    <p>Enter any sentence, generate speech, and render a viseme-sequenced lip-sync video.</p>
+
+    <form id="form">
+      <input type="text" id="text" placeholder="Enter any sentence..." required />
+      <button id="btn" type="submit">Generate Video</button>
+    </form>
+
+    <div class="row">
+      <div class="meta">
+        <span id="status"></span>
+        <button id="playBtn" type="button" style="display:none">Play Video</button>
+      </div>
+      <div id="error" class="error"></div>
+      <div class="video-container">
+        <video id="pauseLoop" class="pause-loop" autoplay loop muted playsinline></video>
+        <video id="output" class="generated-video hidden" playsinline></video>
+      </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
